@@ -14,6 +14,10 @@ class SlipController extends Controller
      */
     public function index()
     {
+        $items = Slip::all();
+        return view('pages.slip.index')->with([
+            'items' => $items
+        ]);
     }
 
     /**
@@ -23,7 +27,10 @@ class SlipController extends Controller
      */
     public function create()
     {
-        //
+        $items = Slip::all();
+        return view('pages.slip.tambah')->with([
+            'items' => $items
+        ]);
     }
 
     /**
@@ -41,11 +48,11 @@ class SlipController extends Controller
             'qty' => 'required|integer',
             'biaya' => 'required|integer',
             'tanggal' => 'required|date',
-            'total_biaya' => 'required|integer',
-
         ]);
         $data = $request->all();
+        $data['total_biaya'] = $request->biaya * $request->qty;
         Slip::create($data);
+        return redirect()->route('slip.index');
     }
 
     /**
@@ -56,7 +63,10 @@ class SlipController extends Controller
      */
     public function show($id)
     {
-        //
+        $item = Slip::findOrFail($id);
+        return view('pages.slip.detail')->with([
+            'item' => $item
+        ]);
     }
 
     /**
@@ -67,7 +77,10 @@ class SlipController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Slip::findOrFail($id);
+        return view('pages.slip.edit')->with([
+            'item' => $item
+        ]);
     }
 
     /**
@@ -80,8 +93,10 @@ class SlipController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
+        $data['total_biaya'] = $request->biaya * $request->qty;
         $slip = Slip::findOrFail($id);
         $slip->update($data);
+        return redirect()->route('slip.index');
     }
 
     /**
@@ -93,5 +108,6 @@ class SlipController extends Controller
     public function destroy($id)
     {
         Slip::findOrFail($id)->delete();
+        return redirect()->route('slip.index');
     }
 }
