@@ -8,12 +8,15 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="white-box">
-                <form action="{{ route('cari') }}" method="get">
+               <div class="row col-2 d-flex float-end mb-3">
+                    <form action="{{ route('cari') }}" method="get">
                     @csrf
-                    <input type="cari" name="cari">
-                    <button type="submit">cari</button>
+                    <input type="cari" name="cari" placeholder="Search..." class="form-control mt-0 align-items-center">
                 </form>
-                <a href="{{ route('kwitansi.create') }}" class="btn btn-success mb-3 shadow-sm">Add</a>
+               </div>
+               <div class="col-6 mb-3">
+                   <a href="{{ route('kwitansi.create') }}" class="btn btn-success shadow-sm">Add</a>
+               </div>
                 <div class="table-responsive">
                     @php
                         $no = 1;
