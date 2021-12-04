@@ -8,8 +8,16 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="white-box">
+                <form action="{{ route('cari.pengeluaran') }}" method="get">
+                    @csrf
+                    <input type="cari" name="cari">
+                    <button type="submit">cari</button>
+                </form>
                 <a href="{{ route('pengeluaran.create') }}" class="btn btn-success mb-3 shadow-sm">Add</a>
                 <div class="table-responsive">
+                    @php
+                        $no = 1;
+                    @endphp
                     <table class="table text-nowrap">
                         <thead>
                             <tr>
@@ -24,7 +32,7 @@
                         <tbody>
                             @forelse ($items as $item)
                                 <tr>
-                                    <td>1</td>
+                                    <td>{{$no++}}</td>
                                     <td>{{ $item->id_kwitansi }}</td>
                                     <td>{{ $item->tanggal }}</td>
                                     <td>{{ $item->keterangan }}</td>

@@ -18,7 +18,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [Controller::class, 'index']);
-Route::get('/cari/kwitansi', [KwintasiController::class, 'cari'])->name('cari');
+Route::get('/cari/slip', [SlipController::class, 'cari'])->name('cari.slip');
+Route::get('/cari/pengeluaran', [PengeluaranController::class, 'cari'])->name('cari.pengeluaran');
+Route::get('/cari/kwitansi', [KwintasiController::class, 'cari'])->name('cari.kwitansi');
 Route::resource('/slip', SlipController::class);
 Route::resource('/kwitansi', KwintasiController::class);
 Route::resource('/pengeluaran', PengeluaranController::class);

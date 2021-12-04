@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="white-box">
-                <form action="{{ route('cari') }}" method="get">
+                <form action="{{ route('cari.kwitansi') }}" method="get">
                     @csrf
                     <input type="cari" name="cari">
                     <button type="submit">cari</button>

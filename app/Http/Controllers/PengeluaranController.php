@@ -12,6 +12,17 @@ class PengeluaranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function cari(Request $request)
+    {
+        $cari = $request->query('cari');
+        $items = Pengeluaran::query();
+        $items->when($cari, function ($q) use ($cari) {
+            $q->where('keterangan', 'like', '%' . $cari . '%');
+        });
+        return view('pages.pengeluaran.index')->with([
+            'items' => $items->get()
+        ]);
+    }
     public function index()
     {
         $items = Pengeluaran::all();
