@@ -6,24 +6,38 @@
             <ul id="sidebarnav">
                 <!-- User Profile-->
                 <li class="sidebar-item pt-2">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dashboard.html"
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index"
                         aria-expanded="false">
                         <i class="far fa-clock" aria-hidden="true"></i>
                         <span class="hide-menu">Dashboard</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="profile.html"
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="slip"
                         aria-expanded="false">
-                        <i class="fa fa-user" aria-hidden="true"></i>
-                        <span class="hide-menu">Profile</span>
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        <span class="hide-menu">Slip Order</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="basic-table.html"
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="kwitansi"
                         aria-expanded="false">
-                        <i class="fa fa-table" aria-hidden="true"></i>
-                        <span class="hide-menu">Basic Table</span>
+                        <i class="fa fa-university" aria-hidden="true"></i>
+                        <span class="hide-menu">Kwitansi</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pengeluaran"
+                        aria-expanded="false">
+                        <i class="fa fa-th-large " aria-hidden="true"></i>
+                        <span class="hide-menu">pengeluaran</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="logout"
+                        aria-expanded="false">
+                        <i class="fa fa-sign-out-alt " aria-hidden="true"></i>
+                        <span class="hide-menu">Logout</span>
                     </a>
                 </li>
             </ul>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kwitasi;
 use Illuminate\Http\Request;
 
 class KwintasiController extends Controller
@@ -13,7 +14,10 @@ class KwintasiController extends Controller
      */
     public function index()
     {
-        //
+        $items = Kwitasi::all();
+        return view('pages.kwitansi.index')->with([
+            'items' => $items
+        ]);
     }
 
     /**
@@ -23,7 +27,10 @@ class KwintasiController extends Controller
      */
     public function create()
     {
-        //
+        $items = Kwitasi::all();
+        return view('pages.kwitansi.tambah')->with([
+            'items' => $items
+        ]);
     }
 
     /**
@@ -34,7 +41,17 @@ class KwintasiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'id_slip' => 'required|integer',
+            'nama' => 'required|string',
+            'alamat' => 'required|string',
+            'keterangan' => 'required|string',
+            'biaya' => 'required|integer',
+            'tanggal' => 'required|date',
+        ]);
+        $data = $request->all();
+        Kwitasi::create($data);
+        return redirect()->route('kwitansi.index');
     }
 
     /**
@@ -45,7 +62,10 @@ class KwintasiController extends Controller
      */
     public function show($id)
     {
-        //
+        $item = Kwitasi::findOrFail($id);
+        return view('pages.kwitansi.detail')->with([
+            'item' => $item
+        ]);
     }
 
     /**
@@ -56,7 +76,10 @@ class KwintasiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Kwitasi::findOrFail($id);
+        return view('pages.kwitansi.edit')->with([
+            'item' => $item
+        ]);
     }
 
     /**
@@ -68,7 +91,10 @@ class KwintasiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $kwitansi = Kwitasi::findOrFail($id);
+        $kwitansi->update($data);
+        return redirect()->route('kwitansi.index');
     }
 
     /**
@@ -79,6 +105,7 @@ class KwintasiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Kwitasi::findOrFail($id)->delete();
+        return redirect()->route('kwitansi.index');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pengeluaran;
 use Illuminate\Http\Request;
 
 class PengeluaranController extends Controller
@@ -13,7 +14,10 @@ class PengeluaranController extends Controller
      */
     public function index()
     {
-        //
+        $items = Pengeluaran::all();
+        return view('pages.pengeluaran.index')->with([
+            'items' => $items
+        ]);
     }
 
     /**
@@ -23,7 +27,10 @@ class PengeluaranController extends Controller
      */
     public function create()
     {
-        //
+        $items = Pengeluaran::all();
+        return view('pages.pengeluaran.tambah')->with([
+            'items' => $items
+        ]);
     }
 
     /**
@@ -34,7 +41,15 @@ class PengeluaranController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'id_kwitansi' => 'required|integer',
+            'tanggal' => 'required|date',
+            'keterangan' => 'required|string',
+            'biaya' => 'required|integer',
+        ]);
+        $data = $request->all();
+        Pengeluaran::create($data);
+        return redirect()->route('pengeluaran.index');
     }
 
     /**
@@ -56,7 +71,10 @@ class PengeluaranController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Pengeluaran::findOrFail($id);
+        return view('pages.pengeluaran.edit')->with([
+            'item' => $item
+        ]);
     }
 
     /**
@@ -68,7 +86,10 @@ class PengeluaranController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $pengeluaran = Pengeluaran::findOrFail($id);
+        $pengeluaran->update($data);
+        return redirect()->route('pengeluaran.index');
     }
 
     /**
@@ -79,6 +100,7 @@ class PengeluaranController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Pengeluaran::findOrFail($id)->delete();
+        return redirect()->route('pengeluaran.index');
     }
 }

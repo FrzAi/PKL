@@ -99,6 +99,8 @@
                 </td>
 			</tr>
 		</table>
+		<a href="#" class="btn btn-info ds" onclick="window.print()"><i class="fa fa-print"></i> Cetak Struk</a>
+		<a href="?" class="btn btn-danger ds">Kembali</a>
             </div>
         </div>
     </div>

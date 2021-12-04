@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\SlipController;
+use App\Http\Controllers\KwintasiController;
+use App\Http\Controllers\PengeluaranController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +19,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [Controller::class, 'index']);
 Route::resource('/slip', SlipController::class);
+Route::resource('/kwitansi', KwintasiController::class);
+Route::resource('/pengeluaran', PengeluaranController::class);
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
