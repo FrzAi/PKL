@@ -8,8 +8,19 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="white-box">
-                <a href="{{ route('slip.create') }}" class="btn btn-success mb-3 shadow-sm">Add</a>
+             <div class="row col-2 d-flex float-end mb-3">
+                  <form action="{{ route('cari.slip') }}" method="get">
+                  @csrf
+                  <input type="cari" name="cari" placeholder="Search..." class="form-control mt-0 align-items-center">
+                  </form>
+              </div>
+               <div class="col-6 mb-3">
+                  <a href="{{ route('slip.create') }}" class="btn btn-success shadow-sm">Add</a>
+               </div>
                 <div class="table-responsive">
+                    @php
+                        $no = 1;
+                    @endphp
                     <table class="table text-nowrap">
                         <thead>
                             <tr>
@@ -27,7 +38,7 @@
                         <tbody>
                             @forelse ($items as $item)
                                 <tr>
-                                    <td>1</td>
+                                    <td>{{ $no++ }}</td>
                                     <td>{{ $item->nama }}</td>
                                     <td>{{ $item->keterangan }}</td>
                                     <td>{{ $item->nama_barang }}</td>

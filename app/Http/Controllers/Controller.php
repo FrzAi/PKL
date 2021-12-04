@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kwitasi;
+use App\Models\Pengeluaran;
+use App\Models\Slip;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -13,6 +16,17 @@ class Controller extends BaseController
 
     public function index()
     {
-        return view('pages.dasboard');
+
+        $slip = Slip::count();
+        $kwintansi = Kwitasi::count();
+        $pengeluaran = Pengeluaran::count();
+        $totalPengeluaran = Pengeluaran::sum('biaya');
+
+        return view('pages.dasboard')->with([
+            'pengeluaran' => $pengeluaran,
+            'kwintansi' => $kwintansi,
+            'slip' => $slip,
+            'totalPengeluaran' => $totalPengeluaran
+        ]);
     }
 }

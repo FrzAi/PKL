@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pengeluaran;
 use Illuminate\Http\Request;
+use PDF;
 
 class PengeluaranController extends Controller
 {
@@ -12,6 +13,27 @@ class PengeluaranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function print()
+    {
+        $items = Pengeluaran::all();
+        $total = $items->sum('biaya');
+        set_time_limit(600);
+        $pdf = PDF::loadView('pages/pengeluaran/print', ['items' => $items, 'total' => $total]);
+
+        return $pdf->stream();
+    }
+
+    public function cari(Request $request)
+    {
+        $cari = $request->query('cari');
+        $items = Pengeluaran::query();
+        $items->when($cari, function ($q) use ($cari) {
+            $q->where('keterangan', 'like', '%' . $cari . '%');
+        });
+        return view('pages.pengeluaran.index')->with([
+            'items' => $items->get()
+        ]);
+    }
     public function index()
     {
         $items = Pengeluaran::all();

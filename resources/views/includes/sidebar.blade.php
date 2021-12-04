@@ -6,7 +6,7 @@
             <ul id="sidebarnav">
                 <!-- User Profile-->
                 <li class="sidebar-item pt-2">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index"
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/"
                         aria-expanded="false">
                         <i class="far fa-clock" aria-hidden="true"></i>
                         <span class="hide-menu">Dashboard</span>
@@ -36,8 +36,9 @@
                 <li class="sidebar-item">
                     <form action="{{ route('logout') }}" method="post">
                         @csrf
-                        <button class="sidebar-link waves-effect waves-dark sidebar-link" aria-expanded="false" type="submit">
-                            <i class="fa fa-sign-out-alt " aria-hidden="true"></i>
+                        <button class="btn btn-cyan sidebar-link waves-effect waves-dark sidebar-link" aria-expanded="false" type="submit">
+                            <i class="fa fa-sign-out-alt" aria-hidden="true"></i>
+                            <span class="hide-menu">Logout</span>
                         </button>
                     </form>
                     {{-- <a class="sidebar-link waves-effect waves-dark sidebar-link" href="logout"

@@ -18,7 +18,7 @@ class CreateTbKwitansi extends Migration
             $table->foreignId('id_slip')->unsigned();
             $table->foreign('id_slip')->references('id')->on('tb_slip');
             $table->string('nama');
-            $table->string('pekerjaan');
+            $table->string('pekerjaan')->nullable();
             $table->string('alamat');
             $table->string('keterangan');
             $table->integer('biaya');

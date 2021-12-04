@@ -9,13 +9,13 @@
         <div class="col-sm-12">
             <div class="white-box">
                <div class="row col-2 d-flex float-end mb-3">
-                    <form action="{{ route('cari') }}" method="get">
-                    @csrf
-                    <input type="cari" name="cari" placeholder="Search..." class="form-control mt-0 align-items-center">
-                </form>
-               </div>
+                  <form action="{{ route('cari.kwitansi') }}" method="get">
+                  @csrf
+                  <input type="cari" name="cari" placeholder="Search..." class="form-control mt-0 align-items-center">
+                  </form>
+              </div>
                <div class="col-6 mb-3">
-                   <a href="{{ route('kwitansi.create') }}" class="btn btn-success shadow-sm">Add</a>
+                  <a href="{{ route('kwitansi.create') }}" class="btn btn-success shadow-sm">Add</a>
                </div>
                 <div class="table-responsive">
                     @php

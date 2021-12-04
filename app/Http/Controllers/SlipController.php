@@ -12,6 +12,17 @@ class SlipController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function cari(Request $request)
+    {
+        $cari = $request->query('cari');
+        $items = Slip::query();
+        $items->when($cari, function ($q) use ($cari) {
+            $q->where('nama', 'like', '%' . $cari . '%');
+        });
+        return view('pages.slip.index')->with([
+            'items' => $items->get()
+        ]);
+    }
     public function index()
     {
         $items = Slip::all();

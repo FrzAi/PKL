@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kwitasi;
+use App\Models\Slip;
 use Illuminate\Http\Request;
+use PDF;
 
 class KwintasiController extends Controller
 {
@@ -12,6 +14,12 @@ class KwintasiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function print()
+    {
+        $data = Kwitasi::all();
+        $pdf = PDF::loadView('print', $data);
+    }
+
     public function cari(Request $request)
     {
         $cari = $request->query('cari');
@@ -39,9 +47,11 @@ class KwintasiController extends Controller
      */
     public function create()
     {
+        $slips = Slip::all();
         $items = Kwitasi::all();
         return view('pages.kwitansi.tambah')->with([
-            'items' => $items
+            'items' => $items,
+            'slips' => $slips
         ]);
     }
 
@@ -60,6 +70,7 @@ class KwintasiController extends Controller
             'keterangan' => 'required|string',
             'biaya' => 'required|integer',
             'tanggal' => 'required|date',
+            'pekerjaan' => 'string|nullable'
         ]);
         $data = $request->all();
         Kwitasi::create($data);

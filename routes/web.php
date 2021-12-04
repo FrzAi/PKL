@@ -17,12 +17,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [Controller::class, 'index']);
-Route::get('/cari/kwitansi', [KwintasiController::class, 'cari'])->name('cari');
-Route::resource('/slip', SlipController::class);
-Route::resource('/kwitansi', KwintasiController::class);
-Route::resource('/pengeluaran', PengeluaranController::class);
+Route::prefix('/')
+    ->middleware('auth')
+    ->group(function () {
 
+        Route::get('/', [Controller::class, 'index']);
+        Route::get('/cari/slip', [SlipController::class, 'cari'])->name('cari.slip');
+        Route::get('/cari/pengeluaran', [PengeluaranController::class, 'cari'])->name('cari.pengeluaran');
+        Route::get('/cari/kwitansi', [KwintasiController::class, 'cari'])->name('cari.kwitansi');
+        Route::get('/print/pengeluaran', [PengeluaranController::class, 'print'])->name('print.pengeluaran');
+
+        Route::resource('/slip', SlipController::class);
+        Route::resource('/kwitansi', KwintasiController::class);
+        Route::resource('/pengeluaran', PengeluaranController::class);
+    });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

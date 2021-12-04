@@ -2,14 +2,23 @@
 
 @section('content')
 <div class="container-fluid">
-<!-- ============================================================== -->
-<!-- Start Page Content -->
-<!-- ============================================================== -->
     <div class="row">
         <div class="col-sm-12">
             <div class="white-box">
-                <a href="{{ route('pengeluaran.create') }}" class="btn btn-success mb-3 shadow-sm">Add</a>
+              <div class="row col-2 d-flex float-end mb-3">
+                  <form action="{{ route('cari.pengeluaran') }}" method="get">
+                  @csrf
+                  <input type="cari" name="cari" placeholder="Search..." class="form-control mt-0 align-items-center">
+                  </form>
+              </div>
+               <div class="col-6 mb-3">
+                  <a href="{{ route('pengeluaran.create') }}" class="btn btn-success shadow-sm">Add</a>
+                  <a href="{{ route('print.pengeluaran') }}" class="btn btn-info shadow-sm">Print</a>
+               </div>
                 <div class="table-responsive">
+                    @php
+                        $no = 1;
+                    @endphp
                     <table class="table text-nowrap">
                         <thead>
                             <tr>
@@ -24,7 +33,7 @@
                         <tbody>
                             @forelse ($items as $item)
                                 <tr>
-                                    <td>1</td>
+                                    <td>{{$no++}}</td>
                                     <td>{{ $item->id_kwitansi }}</td>
                                     <td>{{ $item->tanggal }}</td>
                                     <td>{{ $item->keterangan }}</td>
@@ -55,15 +64,6 @@
             </div>
         </div>
     </div>
-<!-- ============================================================== -->
-<!-- End PAge Content -->
-<!-- ============================================================== -->
-<!-- ============================================================== -->
-<!-- Right sidebar -->
-<!-- ============================================================== -->
-<!-- .right-sidebar -->
-<!-- ============================================================== -->
-<!-- End Right sidebar -->
-<!-- ============================================================== -->
+
 </div>
 @endsection

@@ -19,11 +19,19 @@
                 @endif
                 <form action="{{ route('kwitansi.store') }}" method="post">
                       @csrf
-                    
-                    <div class="form-group">
+
+                    {{-- <div class="form-group">
                         <label for="id_slip">ID Slip</label>
                         <input type="number" name="id_slip" value="{{ old('id_slip') }}" class="form-control" placeholder="id_slip">
-                    </div>  
+                    </div> --}}
+                    <div class="form-group">
+                        <label for="id_slip">Nama Slip</label>
+                        <select name="id_slip" id="" class="form-control">
+                            @foreach ($slips as $slip)
+                                <option value="{{ $slip->id }}">{{ $slip->nama }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="form-group">
                         <label for="nama">Nama</label>
                         <input type="text" name="nama" value="{{ old('nama') }}" class="form-control" placeholder="nama">
