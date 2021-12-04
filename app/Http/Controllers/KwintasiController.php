@@ -12,6 +12,18 @@ class KwintasiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function cari(Request $request)
+    {
+        $cari = $request->query('cari');
+        $items = Kwitasi::query();
+        $items->when($cari, function ($q) use ($cari) {
+            $q->where('nama', 'like', '%' . $cari . '%');
+        });
+        return view('pages.kwitansi.index')->with([
+            'items' => $items->get()
+        ]);
+    }
+
     public function index()
     {
         $items = Kwitasi::all();
